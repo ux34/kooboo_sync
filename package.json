@@ -1,0 +1,24 @@
+{
+  "name": "kooboo_sync",
+  "version": "1.0.0",
+  "description": "Kooboo项目同步工具",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "kooboo-pull": "dist/cli/pull.js",
+    "kooboo-push": "dist/cli/push.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

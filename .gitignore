@@ -1,0 +1,13 @@
+/.DS_Store
+/.env
+/Kooboo
+/node_modules
+/dist
+/build
+*.log
+*.tmp
+*.swp
+*.bak
+*.cache
+.idea
+.vscode
