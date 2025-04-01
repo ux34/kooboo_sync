@@ -1,3 +1,5 @@
-import { pullTask } from './pull'
+// import { pullTask } from './pull'
+// pullTask(false)
 
-pullTask(false)
+import { pushTask } from './push'
+pushTask(false)

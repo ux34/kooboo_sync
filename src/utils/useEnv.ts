@@ -28,6 +28,18 @@ export const useEnv = (): EnvConfig => {
 
   const defaultModules = Object.values(Module);
   const modules = SYNC_MODULES ? SYNC_MODULES.split(',') as Module[] : defaultModules;
+  
+  // modules同步顺序排序 script,style,code,api,view,layout,page
+  const modulesSort = [
+    Module.Script,
+    Module.Style,
+    Module.Code,
+    Module.Api,
+    Module.View,
+    Module.Layout,
+    Module.Page
+  ]
+  modules.sort((a, b) => modulesSort.indexOf(a) - modulesSort.indexOf(b));
 
   return {
     API_BASE_URL,
