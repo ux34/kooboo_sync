@@ -470,18 +470,17 @@ export function fixLocalCode(moduleName: Module) {
   // 1. 删除metadata中不存在的本地文件记录
   metadata = metadata.filter(item => {
     const filePath = path.join(modulePath, `${item.name}${config.fileExtension}`);
-    const exists = fs.existsSync(filePath);
+    const exists = item.name && fs.existsSync(filePath);
     if (!exists) {
       console.log(`移除metadata记录: ${moduleName}/${item.name}${config.fileExtension}`);
     }
     return exists;
   });
-
   // 2. 添加本地文件到metadata
   for (const file of localFiles) {
     if (!metadataFiles.has(file)) {
       // 提取name（去掉扩展名）
-      const name = file.endsWith(config.fileExtension) 
+      const name = (config.fileExtension && file.endsWith(config.fileExtension)) 
         ? file.slice(0, -config.fileExtension.length) 
         : file;
       
