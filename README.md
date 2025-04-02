@@ -1,9 +1,9 @@
 # Kooboo 项目同步工具
+> 本地化Kooboo代码，可用于AI协同开发及Git管理。
 
 ## 功能
 - 从Kooboo拉取代码
 - 推送代码到Kooboo
-- 比较Kooboo和本地的差异
 
 ## 安装
 ```bash
@@ -27,6 +27,14 @@ API_BASE_URL=http://your_api_url BASIC_AUTH_USER_NAME=your_username BASIC_AUTH_P
 ```
 
 ## 使用
+> 强烈建议配合git使用，在执行命令前`暂存所有更改`。这可以防止命令执行失败或误操作导致本地代码丢失，便于快速恢复。
+
+
+### 初始化｜修复目录结构｜自动补全__metadata.json
+```bash
+npx kooboo-fix
+```
+
 ### 拉取代码
 ```bash
 npx kooboo-pull
@@ -48,10 +56,11 @@ npx kooboo-push -f
 ```
 
 ## 项目结构
+- **Api**: API相关代码
+- **Code**: 后端相关代码
 - **Page**: 页面相关代码
 - **View**: 视图相关代码
 - **Layout**: 布局相关代码
-- **Code**: 代码块和API
 - **Style**: 样式文件
 - **Script**: 脚本文件
 
@@ -67,8 +76,9 @@ npm install
 npm run build
 
 # 本地测试
-npm run pullTask
-npm run pushTask
+npm run fix
+npm run pull
+npm run push
 ```
 
 ## 许可证

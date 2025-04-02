@@ -5,12 +5,15 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
+    "kooboo-fix": "dist/cli/fix.js",
     "kooboo-pull": "dist/cli/pull.js",
     "kooboo-push": "dist/cli/push.js"
   },
   "scripts": {
     "build": "tsc",
-    "start": "ts-node src/index.ts"
+    "fix": "ts-node src/index.ts fix",
+    "pull": "ts-node src/index.ts pull",
+    "push": "ts-node src/index.ts push"
   },
   "dependencies": {
     "axios": "^1.8.4",
@@ -20,5 +23,18 @@
     "@types/node": "^22.13.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "kooboo",
+    "sync",
+    "cli"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ux34/kooboo_sync.git"
   }
 }
