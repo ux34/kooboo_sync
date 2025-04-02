@@ -47,6 +47,6 @@ export const useEnv = (): EnvConfig => {
     BASIC_AUTH_PASSWORD,
     SITE_ID,
     SYNC_MODULES: modules,
-    KOOBOO_DIR: path.join(__dirname, '../..', FOLDER_NAME || 'Kooboo')
+    KOOBOO_DIR: path.join(process.cwd(), FOLDER_NAME || 'Kooboo')
   };
 };
