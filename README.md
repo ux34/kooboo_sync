@@ -29,8 +29,18 @@ API_BASE_URL=http://your_api_url BASIC_AUTH_USER_NAME=your_username BASIC_AUTH_P
 ## 使用
 > 强烈建议配合git使用，在执行命令前`暂存所有更改`。这可以防止命令执行失败或误操作导致本地代码丢失，便于快速恢复。
 
+### 初始化项目
+使用URL自动初始化项目配置：
+```bash
+npx kooboo-init https://username:password@sitename.domain.com
+```
 
-### 初始化｜修复目录结构｜自动补全__metadata.json
+或者手动初始化：
+```bash
+npx kooboo-init
+```
+
+### 修复目录结构｜自动补全__metadata.json
 ```bash
 npx kooboo-fix
 ```
@@ -76,9 +86,10 @@ npm install
 npm run build
 
 # 本地测试
+npm run init [url]
 npm run fix
-npm run pull
-npm run push
+npm run pull [-f]
+npm run push [-f]
 ```
 
 ## 许可证

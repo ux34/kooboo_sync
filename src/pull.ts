@@ -3,9 +3,8 @@ import { useEnv } from './utils/useEnv';
 import { pull as pullFunctions } from './sync/genericSync';
 import { Module } from './types';
 
-const { SYNC_MODULES, KOOBOO_DIR } = useEnv();
-
 export async function pullTask(force = false) {
+  const { SYNC_MODULES, KOOBOO_DIR } = useEnv();
   // 确保Kooboo目录存在
   if (!fs.existsSync(KOOBOO_DIR)) {
     fs.mkdirSync(KOOBOO_DIR, { recursive: true });

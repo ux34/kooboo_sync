@@ -11,8 +11,6 @@ import * as view from '../api/view';
 import { useEnv } from '../utils/useEnv';
 import { Module, Metadata } from '../types';
 
-const { KOOBOO_DIR } = useEnv();
-
 const API_MAP = {
   getEdit: {
     Api: (id: string) => api.getEdit('Api', id),
@@ -171,6 +169,7 @@ const API_MAP = {
 };
 
 export async function pull(moduleName: Module, force = false) {
+  const { KOOBOO_DIR } = useEnv();
   const config = SYNC_CONFIG[moduleName];
   const modulePath = path.join(KOOBOO_DIR, moduleName);
   if (!fs.existsSync(modulePath)) {
@@ -241,6 +240,7 @@ export async function pull(moduleName: Module, force = false) {
 }
 
 export async function push(moduleName: Module, force = false) {
+  const { KOOBOO_DIR } = useEnv();
   const config = SYNC_CONFIG[moduleName];
   const modulePath = path.join(KOOBOO_DIR, moduleName);
   const metadataPath = path.join(modulePath, '__metadata.json');
@@ -322,6 +322,7 @@ export async function push(moduleName: Module, force = false) {
 
 // 本地全局路由冲突检查(Module.Api & Module.Page 同时存在才检查)
 export function checkLocalRoutes(): { valid: boolean; errors: string[] } {
+  const { KOOBOO_DIR } = useEnv();
   const modules = [Module.Api, Module.Page];
   for (const moduleName of modules) {
     const metadataPath = path.join(KOOBOO_DIR, moduleName, '__metadata.json');
@@ -370,6 +371,7 @@ export function checkLocalRoutes(): { valid: boolean; errors: string[] } {
 
 // 本地代码检查
 export function checkLocalCode(moduleName: Module): { valid: boolean; errors: string[] } {
+  const { KOOBOO_DIR } = useEnv();
   const config = SYNC_CONFIG[moduleName];
   const modulePath = path.join(KOOBOO_DIR, moduleName);
   const metadataPath = path.join(modulePath, '__metadata.json');
@@ -445,6 +447,7 @@ export function checkLocalCode(moduleName: Module): { valid: boolean; errors: st
 
 // 修复本地代码
 export function fixLocalCode(moduleName: Module) {
+  const { KOOBOO_DIR } = useEnv();
   const config = SYNC_CONFIG[moduleName];
   const modulePath = path.join(KOOBOO_DIR, moduleName);
   const metadataPath = path.join(modulePath, '__metadata.json');

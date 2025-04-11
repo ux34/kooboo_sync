@@ -1,19 +1,10 @@
-import { fixTask } from './fix';
-import { pullTask } from './pull';
-import { pushTask } from './push';
+import { initTask } from './init';
 
 const command = process.argv[2];
-const isForce = process.argv.includes('-f') || process.argv.includes('--force');
 
 switch (command) {
-  case 'fix':
-    fixTask();
-    break;
-  case 'pull':
-    pullTask(isForce);
-    break;
-  case 'push':
-    pushTask(isForce);
+  case 'init':
+    initTask(process.argv[3]);
     break;
   default:
     console.log('请使用以下命令之一：');
