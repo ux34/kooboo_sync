@@ -1,5 +1,5 @@
 import { useEnv } from '../utils/useEnv';
-import { get as getSiteInfo, post as postSiteInfo } from '../api/site';
+import { get as getSettings, post as postSettings } from '../api/site';
 import fs from 'fs';
 import path from 'path';
 
@@ -87,7 +87,7 @@ const SiteInfoUpdateKeys = [
   "prUrl"
 ];
 
-export async function pushSiteInfoTask() {
+export async function pushSettingsTask() {
   const { KOOBOO_DIR } = useEnv();
   const siteInfoPath = path.join(KOOBOO_DIR, 'Data', '__metadata.json');
   
@@ -102,18 +102,18 @@ export async function pushSiteInfoTask() {
       updateData[key] = siteInfo[key];
     }
   });
-  await postSiteInfo(updateData);
+  await postSettings(updateData);
   console.log('Site信息已更新');
 }
 
-export async function pullSiteInfoTask() {
+export async function pullSettingTask() {
   const { KOOBOO_DIR } = useEnv();
   const dataDir = path.join(KOOBOO_DIR, 'Data');
   if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
   }
 
-  const { site: siteInfo } = await getSiteInfo();
+  const { site: siteInfo } = await getSettings();
   const siteInfoPath = path.join(dataDir, '__metadata.json');
   
   fs.writeFileSync(

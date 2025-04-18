@@ -1,5 +1,5 @@
-import { pushSiteInfoTask } from './sync/SiteSync'
+import { pushSettingsTask } from './sync/SiteSync'
 
 export async function sitePushTask(modules?: string) {
-  await pushSiteInfoTask()
+  await pushSettingsTask()
 }
