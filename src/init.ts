@@ -41,6 +41,9 @@ export async function initTask(url?: string) {
   
   // 2. 初始化.gitignore
   initGitignore();
+
+  // 3. 初始化package.json
+  initPackageJson();
 }
 
 export async function autoFillEnv(url: string) {
@@ -140,5 +143,29 @@ export function initGitignore() {
   const gitignorePath = path.join(process.cwd(), '.gitignore');
   if (!fs.existsSync(gitignorePath)) {
     fs.writeFileSync(gitignorePath, GITIGNORE_CONTENT);
+  }
+}
+
+export function initPackageJson() {
+  const packageJsonPath = path.join(process.cwd(), 'package.json');
+  
+  if (fs.existsSync(packageJsonPath)) {
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+    
+    if (!packageJson.scripts) {
+      packageJson.scripts = {};
+    }
+    
+    packageJson.scripts = {
+      ...packageJson.scripts,
+      "k-init": "kooboo-init",
+      "k-fix": "kooboo-fix",
+      "k-pull": "kooboo-pull",
+      "k-push": "kooboo-push",
+      "k-site-pull": "kooboo-site-pull",
+      "k-site-push": "kooboo-site-push"
+    };
+    
+    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
   }
 }
