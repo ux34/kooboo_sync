@@ -1,5 +1,8 @@
-import { initTask } from './init';
+/**
+ * @description Because index.ts reads .env during the import phase, and the init command is used to generate .env, so it's in a separate file.
+ */
 
+import { initTask } from './init';
 const command = process.argv[2];
 
 switch (command) {
@@ -7,11 +10,7 @@ switch (command) {
     initTask(process.argv[3]);
     break;
   default:
-    console.log('请使用以下命令之一：');
-    console.log('  init [url]    - 初始化项目');
-    console.log('  fix   - 修复本地代码');
-    console.log('  pull [-f]   - 从远程拉取代码');
-    console.log('  push [-f]   - 推送代码到远程');
+    console.log('无效命令');
     process.exit(1);
 }
 
